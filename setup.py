@@ -1,6 +1,5 @@
 import io
 import os
-import sys
 
 from setuptools import setup
 
@@ -8,9 +7,11 @@ README = os.path.join(os.path.abspath(os.path.dirname(__file__)), "README.md")
 with io.open(README, encoding="utf-8") as f:
     long_description = f.read()
 
-install_requires = ["protobuf", "six", "zprofile"]
-if sys.version_info.major >= 3:
-    install_requires.append("mprofile")
+install_requires = [ "protobuf"
+                   , "six"
+                   , "zprofile"
+                   , "mprofile@git+https://github.com/avanov/mprofile.git@e948334b93c67370a895fceffedc74aada7efc01"
+                   ]
 
 setup(
     name="pypprof",
@@ -24,7 +25,6 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
         "Operating System :: POSIX",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
@@ -45,5 +45,6 @@ setup(
     packages=["pypprof"],
     package_data={"pypprof": ["index.html"]},
     install_requires=install_requires,
+    tests_require=["pytest"],
     test_suite="test",
 )
